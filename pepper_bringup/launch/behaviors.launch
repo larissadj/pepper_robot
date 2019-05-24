@@ -1,0 +1,12 @@
+<launch>
+  <!--
+  	This pushes the local PYTHONPATH into the launch file, so that the NaoQI API is found.
+    You need to add the Pepper's API dir to your PYTHONPATH so that the modules are found.
+  -->
+  <env name="PYTHONPATH" value="$(env PYTHONPATH)" />
+
+  <arg name="pepper_ip" default="$(optenv PEPPER_IP 127.0.0.1)" />
+  <arg name="pepper_port" default="$(optenv PEPPER_PORT 9559)" />
+
+  <node pkg="pepper_apps" type="pepper_behaviors.py" name="pepper_behaviors" required="true" args="--pip=$(arg nao_ip) --pport=$(arg pepper_port)"  />
+</launch>
